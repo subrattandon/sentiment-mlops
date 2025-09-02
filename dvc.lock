@@ -1,0 +1,64 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py --input data/raw --output data/processed
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 3f03c19116b12e8539a74dfec2ed64e0.dir
+      size: 93313
+      nfiles: 1
+    - path: src/prepare.py
+      hash: md5
+      md5: 1cf7259daac9c545a38110e6b69b91ac
+      size: 598
+    outs:
+    - path: data/processed
+      hash: md5
+      md5: 8acfcc6da965f2b4a63300e8964bfc27.dir
+      size: 93705
+      nfiles: 1
+  train:
+    cmd: python src/train.py --data data/processed --model sentiment_model.pkl 
+      --vectorizer vectorizer.pkl --metrics metrics/train.json
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 8acfcc6da965f2b4a63300e8964bfc27.dir
+      size: 93705
+      nfiles: 1
+    - path: src/train.py
+      hash: md5
+      md5: b80d1d0ce94f9d5c8822157db5b4e69e
+      size: 2059
+    outs:
+    - path: metrics/train.json
+      hash: md5
+      md5: ce3618d86a47cfba7d4c112ac4a2d677
+      size: 23
+    - path: sentiment_model.pkl
+      hash: md5
+      md5: c36ef7975441e4967bcc544d54a95329
+      size: 4327
+  evaluate:
+    cmd: python src/evaluate.py --model sentiment_model.pkl --data 
+      data/processed --out metrics/eval.json
+    deps:
+    - path: data/processed
+      hash: md5
+      md5: 8acfcc6da965f2b4a63300e8964bfc27.dir
+      size: 93705
+      nfiles: 1
+    - path: sentiment_model.pkl
+      hash: md5
+      md5: c36ef7975441e4967bcc544d54a95329
+      size: 4327
+    - path: src/evaluate.py
+      hash: md5
+      md5: bbc4e73c39225e48d6de49adb2a12bad
+      size: 1324
+    outs:
+    - path: metrics/eval.json
+      hash: md5
+      md5: d66533b82244588cb7dec7c2af205b99
+      size: 2407
