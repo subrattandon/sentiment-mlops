@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/dd6bc35490334b16afed5eb7777de6ac/artifacts
+end_time: 1756637759209
+entry_point_name: ''
+experiment_id: '197591498808451024'
+lifecycle_stage: active
+run_id: dd6bc35490334b16afed5eb7777de6ac
+run_name: persistent-croc-907
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756637757990
+status: 3
+tags: []
+user_id: subrattandon

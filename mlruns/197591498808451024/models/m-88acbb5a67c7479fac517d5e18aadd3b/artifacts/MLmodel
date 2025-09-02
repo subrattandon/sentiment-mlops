@@ -1,0 +1,22 @@
+artifact_path: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/models/m-88acbb5a67c7479fac517d5e18aadd3b/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.1
+mlflow_version: 3.3.1
+model_id: m-88acbb5a67c7479fac517d5e18aadd3b
+model_size_bytes: 4037
+model_uuid: m-88acbb5a67c7479fac517d5e18aadd3b
+prompts: null
+run_id: c5f95a68736740fd8f457bbf3227ce31
+utc_time_created: '2025-09-01 17:29:54.461737'

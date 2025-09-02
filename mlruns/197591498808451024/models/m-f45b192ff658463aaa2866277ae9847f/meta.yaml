@@ -1,0 +1,10 @@
+artifact_location: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/models/m-f45b192ff658463aaa2866277ae9847f/artifacts
+creation_timestamp: 1756637757997
+experiment_id: '197591498808451024'
+last_updated_timestamp: 1756637759207
+model_id: m-f45b192ff658463aaa2866277ae9847f
+model_type: null
+name: sentiment_model
+source_run_id: dd6bc35490334b16afed5eb7777de6ac
+status: 2
+status_message: null

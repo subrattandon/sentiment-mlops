@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/d2d8b9bc991844cb9db76234a2a6a221/artifacts
+end_time: 1756637524983
+entry_point_name: ''
+experiment_id: '197591498808451024'
+lifecycle_stage: active
+run_id: d2d8b9bc991844cb9db76234a2a6a221
+run_name: burly-jay-167
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756637524979
+status: 4
+tags: []
+user_id: subrattandon

@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/ba7edc9b801c4eafa1c68673167e220b/artifacts
+end_time: 1756637511931
+entry_point_name: ''
+experiment_id: '197591498808451024'
+lifecycle_stage: active
+run_id: ba7edc9b801c4eafa1c68673167e220b
+run_name: thundering-crow-722
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756637511929
+status: 4
+tags: []
+user_id: subrattandon

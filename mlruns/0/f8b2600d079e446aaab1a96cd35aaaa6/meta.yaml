@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/0/f8b2600d079e446aaab1a96cd35aaaa6/artifacts
+end_time: 1756625104776
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f8b2600d079e446aaab1a96cd35aaaa6
+run_name: funny-croc-544
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756625104771
+status: 3
+tags: []
+user_id: subrattandon

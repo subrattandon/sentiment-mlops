@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/subrattandon/sentiment-mlops/mlruns/197591498808451024/c5f95a68736740fd8f457bbf3227ce31/artifacts
+end_time: 1756747795729
+entry_point_name: ''
+experiment_id: '197591498808451024'
+lifecycle_stage: active
+run_id: c5f95a68736740fd8f457bbf3227ce31
+run_name: aged-bat-881
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756747794452
+status: 3
+tags: []
+user_id: subrattandon
