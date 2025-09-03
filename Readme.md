@@ -1,93 +1,93 @@
 # Sentiment MLOps
 
-A machine learning project for sentiment analysis, leveraging modern MLOps practices for scalable and reproducible workflows.
+A scalable sentiment analysis project leveraging MLOps best practices for model training, deployment, and monitoring.
 
-## Technologies Used
+## Tech Stack
 
-- **Python 3.8+**: Core programming language.
-- **PyTorch**: Deep learning framework for model development.
-- **scikit-learn**: Data preprocessing and evaluation metrics.
-- **pandas**: Data manipulation and analysis.
-- **MLflow**: Experiment tracking and model management.
-- **Docker**: Containerization for reproducible environments.
-- **GitHub Actions**: CI/CD for automated testing and deployment.
+- Python 3.10
+- scikit-learn
+- pandas
+- Flask (API server)
+- Docker
 
 ## Project Structure
 
 ```
 sentiment-mlops/
-├── data/
-├── models/
 ├── train.py
-├── requirements.txt
+├── app.py
+├── Dockerfile
 └── README.md
 ```
 
-## Training Script (`train.py`)
+## Training the Model
 
-Below is a simplified version of the training script:
+`train.py` trains a sentiment analysis model using scikit-learn.
 
 ```python
+# train.py
 import pandas as pd
-import torch
-from torch import nn, optim
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-import mlflow
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+import joblib
 
-# Load and preprocess data
-data = pd.read_csv('data/sentiment.csv')
-X_train, X_test, y_train, y_test = train_test_split(
-    data['text'], data['label'], test_size=0.2, random_state=42
-)
+# Load dataset
+df = pd.read_csv('data/sentiment.csv')
+X = df['text']
+y = df['label']
 
-# Define a simple model
-class SentimentModel(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim):
-        super(SentimentModel, self).__init__()
-        self.fc = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, output_dim)
-        )
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    def forward(self, x):
-        return self.fc(x)
+# Vectorize text
+vectorizer = CountVectorizer()
+X_train_vec = vectorizer.fit_transform(X_train)
+X_test_vec = vectorizer.transform(X_test)
 
-# Initialize model, loss, optimizer
-model = SentimentModel(input_dim=100, hidden_dim=64, output_dim=2)
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+# Train model
+model = MultinomialNB()
+model.fit(X_train_vec, y_train)
 
-# Training loop
-for epoch in range(10):
-    # Dummy training step (replace with actual data loader)
-    optimizer.zero_grad()
-    outputs = model(torch.randn(32, 100))
-    loss = criterion(outputs, torch.randint(0, 2, (32,)))
-    loss.backward()
-    optimizer.step()
-
-# Evaluation
-y_pred = torch.argmax(model(torch.randn(len(X_test), 100)), dim=1)
-acc = accuracy_score(torch.randint(0, 2, (len(X_test),)), y_pred)
-
-# Log metrics with MLflow
-mlflow.log_metric("accuracy", acc)
+# Save model and vectorizer
+joblib.dump(model, 'model/sentiment_model.pkl')
+joblib.dump(vectorizer, 'model/vectorizer.pkl')
 ```
 
-## Getting Started
+## Dockerfile
 
-1. Clone the repository.
-2. Install dependencies:  
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Run training:  
-   ```bash
-   python train.py
-   ```
+Containerize the application for reproducible deployments.
+
+```dockerfile
+# Dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+```
+
+## Running the Server
+
+1. **Build Docker Image:**
+    ```bash
+    docker build -t sentiment-mlops .
+    ```
+
+2. **Run the Server:**
+    ```bash
+    docker run -p 5000:5000 sentiment-mlops
+    ```
+
+The API server will be available at `http://localhost:8000`.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT
